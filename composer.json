@@ -1,0 +1,15 @@
+{
+    "name": "tmh/build-mvc",
+    "authors": [
+        {
+            "name": "tmh3012",
+            "email": "hung.tm3012@gmmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "require": {}
+}
