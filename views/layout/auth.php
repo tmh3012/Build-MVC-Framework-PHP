@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo $this->homeUrl ?>/assets/css/main.css">
-    <link rel="stylesheet" href="<?php echo $this->homeUrl ?>/assets/css/base.css">
-    <link rel="stylesheet" href="<?php echo $this->homeUrl ?>/assets/css/grid.css">
-    <link rel="stylesheet" href="<?php echo $this->homeUrl ?>/assets/css/responsive.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/grid.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
     <!--    <link rel="stylesheet" href="-->
     <?php //echo $this->homeUrl ?><!--/assets/fonts/fontawesome-pro-5.13.0-web/css/all.min.css">-->
     <!--    <link rel="stylesheet" href="-->
@@ -26,10 +26,9 @@
     <!-- begin code header -->
     <header class="header header-auth">
         <div class="grid wide">
-            <!-- header layout for logo, search, cart -->
-            <div class="header-with-action">
+            <div class="header-with-page-title">
                 <div class="header__logo">
-                    <a href="#">
+                    <a href="http://localhost:8080">
                         <svg viewBox="0 0 192 65" class="header__logo-img">
                             <g fill-rule="evenodd">
                                 <path fill="#FFF"
@@ -39,10 +38,8 @@
                         </svg>
                     </a>
                 </div>
-
                 <h1 class="page-action"><?php echo $this->title ?></h1>
             </div>
-            <!-- end header layout for logo, search, cart -->
         </div>
     </header>
     <!-- end code header -->
@@ -53,7 +50,7 @@
         <!-- end code container -->
     </div>
     <!-- begin code footer -->
-    <div class="footer">
+    <footer class="footer">
         <div class="footer__home">
             <div class="grid wide">
                 <div class="footer__home-separation row">
@@ -233,7 +230,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </footer>
     <!-- end code footer -->
 
 </body>
