@@ -49,7 +49,7 @@ class Field
             $this->attribute,
             $this->model->{$this->attribute},
             $this->placeholder,
-            $this->model->getFirstError($this->attribute),
+            $this->model->hasError($this->attribute) ? $this->model->getFirstError($this->attribute) : '',
         );
     }
 }
