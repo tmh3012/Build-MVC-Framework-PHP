@@ -9,7 +9,7 @@
                 <h2 class="form-title">Register now</h2>
             </div>
             <div class="form-body">
-                <?php echo $form->field($model, 'Full name','fullName','Your full name') ?>
+                <?php echo $form->field($model, 'Full name','name','Your full name') ?>
                 <?php echo $form->field($model, 'Email','email', 'Your email address')->type('email') ?>
                 <?php echo $form->field($model, 'Password','password','Enter your password')->type('password') ?>
                 <?php echo $form->field($model, 'Password confirm','passwordConfirm', 'Confirm password')->type('password') ?>
