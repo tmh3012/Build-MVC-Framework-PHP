@@ -5,7 +5,8 @@ namespace app\controller;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
-use app\models\RegisterModel;
+use app\enum\UserTypeEnum;
+use app\models\User;
 
 class AuthController extends Controller
 {
@@ -21,20 +22,21 @@ class AuthController extends Controller
         $this->pageTitle('Register');
         $this->setLayout("auth");
 
-        $registerModel = new RegisterModel();
-
+        $user = new User();
         if ($request->isPost()) {
-            $registerModel->loadData($request->getBody());
-            if ($registerModel->validate() && $registerModel->register()) {
-                return 'success';
+            $user->loadData($request->getBody());
+            if ($user->validate() && $user->save()) {
+                Application::$app->session->setFlash('register_success', 'thank for registering');
+                Application::$app->response->redirect('/');
+                exit;
             }
             return $this->View('auth.register', [
-                'model' => $registerModel,
+                'model' => $user,
             ]);
         }
 
         return $this->View('auth.register', [
-            'model' => $registerModel,
+            'model' => $user,
         ]);
     }
 }
