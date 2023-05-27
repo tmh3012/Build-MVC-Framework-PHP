@@ -331,6 +331,11 @@
 
     <!-- begin code container -->
     <div class="app__container">
+        <?php if(Application::$app->session->getFlash('register_success')): ?>
+            <div class="alter aller-success">
+                <?php echo Application::$app->session->getFlash('register_success') ?>
+            </div>
+        <?php endif; ?>
         {{content}}
         <!-- end code container -->
     </div>
