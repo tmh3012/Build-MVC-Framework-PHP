@@ -136,13 +136,19 @@
                         <!-- EndCode: hiện danh sách thông báo khi hover vào link -->
                     </li>
                     <li class="navbar-list__item">
-                        <a href="" class="navbar-list__item-link ">
+                        <a href="javascript:void(0)" class="navbar-list__item-link ">
                             <i class="navbar-list__icons fal fa-question-circle"></i>
                             Trợ giúp
                         </a>
                     </li>
-                    <!-- <li class="navbar-list__item navbar-list__item--strong navbar-list__item--separate">Đăng ký</li>
-                        <li class="navbar-list__item navbar-list__item--strong">Đăng nhập</li> -->
+                    <?php if(Application::isGuest()): ?>
+                        <li class="navbar-list__item navbar-list__item--strong navbar-list__item--separate">
+                            <a class="navbar-list__item-link " href="/register">Đăng ký</a>
+                        </li>
+                        <li class="navbar-list__item navbar-list__item--strong">
+                            <a class="navbar-list__item-link " href="/login">Đăng nhập</a>
+                        </li>
+                    <?php else: ?>
                     <li class="navbar-list__item navbar-list__item-user">
                         <img src="./assets/img/user.png" alt="user-ava" class="navbar-list__item-user-img">
                         <span class="navbar-list__item-user-name">tmh5252</span>
@@ -159,6 +165,7 @@
                             </li>
                         </ul>
                     </li>
+                    <?php endif ?>
                 </ul>
             </nav>
 
