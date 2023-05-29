@@ -10,13 +10,19 @@ class User extends DbModel
 
     public string $name = '';
     public string $email = '';
+//    public string $primaryKey = '';
     public string $password = '';
     public string $passwordConfirm = '';
 
-    public function tableName(): string
+    public static function tableName(): string
     {
         return 'users';
     }
+
+//    public static function primaryKey(): string
+//    {
+//        return 'id';
+//    }
 
     public function attributes(): array
     {
@@ -24,6 +30,16 @@ class User extends DbModel
             'name',
             'email',
             'password',
+        ];
+    }
+
+    public function labels(): array
+    {
+        return [
+            'name' => 'Full Name',
+            'email' => 'Email Address',
+            'password' => 'Password',
+            'passwordConfirm' => 'Password confirm',
         ];
     }
 

@@ -2,13 +2,16 @@
 
 namespace app\core;
 
-use app\models\Model;
-
 abstract class DbModel extends Model
 {
-    abstract public function tableName(): string;
+    abstract public static function tableName(): string;
 
     abstract public function attributes(): array;
+
+    public static function primaryKey(): string
+    {
+        return 'id';
+    }
 
     public function save()
     {
@@ -32,5 +35,18 @@ abstract class DbModel extends Model
     public static function prepare($sql): \PDOStatement
     {
         return Application::$app->db->prepare($sql);
+    }
+
+    public static function findOne($whereStatement)
+    {
+        $tableName = static::tableName();
+        $attributes = array_keys($whereStatement);
+        $sql = implode(" AND ", array_map(fn($attr) => "$attr = :$attr", $attributes));
+        $statement = self::prepare("SELECT * FROM $tableName WHERE $sql");
+        foreach ($whereStatement as $columnName => $value) {
+            $statement->bindValue(":$columnName", $value);
+        }
+        $statement->execute();
+        return $statement->fetchObject(static::class);
     }
 }
