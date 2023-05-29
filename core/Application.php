@@ -1,10 +1,16 @@
-<?php 
+<?php
+
 namespace app\core;
 
-Class Application {
+use app\models\User;
+
+class Application
+{
 
     public View $view;
     public Database $db;
+    public string $userClass;
+    public ?DbModel $user;
     public Router $router;
     public Request $request;
     public Session $session;
@@ -23,6 +29,14 @@ Class Application {
         $this->view = new View();
         $this->router = new Router($this->request, $this->response);
         $this->db = new Database($config['db']);
+        $this->userClass = $config['userClass'];
+        $primaryKeyValue = $this->session->get('user');
+        if ($primaryKeyValue) {
+            $primaryKey = $this->userClass::primaryKey();
+            $this->user = $this->userClass::findOne([$primaryKey => $primaryKeyValue]);
+        } else {
+            $this->user = null;
+        }
     }
 
 
@@ -51,5 +65,25 @@ Class Application {
     public function setController(Controller $controller): void
     {
         $this->controller = $controller;
+    }
+
+    public function login(DbModel $user)
+    {
+        $this->user = $user;
+        $primaryKey = $user->primaryKey();
+        $primaryKeyValue = $user->{$primaryKey};
+            $this->session->set('user', $primaryKeyValue);
+        return true;
+    }
+
+    public function logout()
+    {
+        $this->user = null;
+        $this->session->remove('user');
+    }
+
+    public static function isGuest(): bool
+    {
+        return !self::$app->user;
     }
 }
