@@ -2,28 +2,25 @@
 
 namespace app\core\form;
 
-use app\models\Model;
+use app\core\Model;
 
 class Field
 {
     public Model $model;
     public string $attribute;
-    private string $label;
     public string $type;
     public string $placeholder;
 
     public CONST TYPE_TEXT = 'text';
 
     /**
-     * @param Model $model
-     * @param string $label
+     * @param \app\core\Model $model
      * @param string $attribute
      * @param string $placeholder
      */
-    public function __construct(Model $model, string $label, string $attribute, string $placeholder = '')
+    public function __construct(Model $model, string $attribute, string $placeholder = '')
     {
         $this->model = $model;
-        $this->label = $label;
         $this->type = self::TYPE_TEXT;
         $this->attribute = $attribute;
         $this->placeholder = $placeholder;
@@ -44,7 +41,7 @@ class Field
                 <span class="form-message">%s</span>
              </div>
         ', $this->model->hasError($this->attribute) ? ' invalid' : '',
-            $this->label,
+            $this->model->getLabel($this->attribute) ?? $this->attribute,
             $this->type,
             $this->attribute,
             $this->model->{$this->attribute},
