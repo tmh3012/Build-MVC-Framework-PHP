@@ -71,4 +71,9 @@ class User extends DbModel
             ],
         ];
     }
+
+    public function getName()
+    {
+        return $this->name;
+    }
 }
