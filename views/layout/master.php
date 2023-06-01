@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/assets/css/base.css">
     <link rel="stylesheet" href="/assets/css/grid.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!--    <link rel="icon" href="./assets/img/shopee.png">-->
 </head>
 
@@ -57,7 +58,7 @@
                 <ul class="navbar-list">
                     <li class="navbar-list__item navbar-list__item--has-notify">
                         <a href="" class="navbar-list__item-link ">
-                            <i class="navbar-list__icons fal fa-bell"></i>
+                            <i class="navbar-list__icons fa-regular fa-bell"></i>
                             Thông báo
                         </a>
                         <!-- BeginCode: hiện danh sách thông báo khi hover vào link -->
@@ -137,7 +138,7 @@
                     </li>
                     <li class="navbar-list__item">
                         <a href="javascript:void(0)" class="navbar-list__item-link ">
-                            <i class="navbar-list__icons fal fa-question-circle"></i>
+                            <i class="navbar-list__icons fa-regular fa-circle-question"></i>
                             Trợ giúp
                         </a>
                     </li>
@@ -150,8 +151,8 @@
                         </li>
                     <?php else: ?>
                     <li class="navbar-list__item navbar-list__item-user">
-                        <img src="./assets/img/user.png" alt="user-ava" class="navbar-list__item-user-img">
-                        <span class="navbar-list__item-user-name">tmh5252</span>
+                        <i class="navbar-list__icons fa-regular fa-circle-user"></i>
+                        <span class="navbar-list__item-user-name"><?php echo Application::$app->user->getName() ?></span>
 
                         <ul class="navbar-list__user-menu">
                             <li class="navbar-list__user-menu-list">
@@ -161,7 +162,7 @@
                                 <a href="">Đơn mua</a>
                             </li>
                             <li class="navbar-list__user-menu-list">
-                                <a href="">Đăng xuất</a>
+                                <a href="/logout">Đăng xuất</a>
                             </li>
                         </ul>
                     </li>
