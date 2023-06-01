@@ -2,6 +2,7 @@
 
 use app\controller\AuthController;
 use app\controller\SiteController;
+use app\controller\UserController;
 use app\core\Application;
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -25,6 +26,8 @@ $app->router->get('/login', [AuthController::class, 'login']);
 $app->router->post('/login', [AuthController::class, 'login']);
 $app->router->get('/register', [AuthController::class, 'register']);
 $app->router->post('/register', [AuthController::class, 'register']);
-
+$app->router->get('/logout', [AuthController::class, 'logout']);
+$app->router->get('/user/profile', [UserController::class, 'profile']);
+$app->router->get('/user/profile/{id:\d+}', [UserController::class, 'profileWithId']);
 
 $app->run();
