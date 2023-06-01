@@ -4,6 +4,8 @@ namespace app\core;
 
 class Request
 {
+    private array $routeParams = [];
+
     public function getHomePath()
     {
         if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
@@ -55,5 +57,28 @@ class Request
 
         return $body;
     }
+    public function getUrl()
+    {
+        $path = $_SERVER['REQUEST_URI'];
+        $position = strpos($path, '?');
+        if ($position !== false) {
+            $path = substr($path, 0, $position);
+        }
+        return $path;
+    }
 
+    public function setRouteParams( $params)
+    {
+        $this->routeParams = $params;
+        return $this;
+    }
+    public function getRouteParams()
+    {
+        return $this->routeParams;
+    }
+
+    public function getRouteParam($param, $default = null)
+    {
+        return $this->routeParams[$param] ?? $default;
+    }
 }
