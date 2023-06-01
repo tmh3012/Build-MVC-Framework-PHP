@@ -4,6 +4,7 @@ namespace app\controller;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\middleware\AuthMiddleware;
 use app\core\Request;
 use app\core\Response;
 use app\enum\UserTypeEnum;
@@ -12,6 +13,13 @@ use app\models\User;
 
 class AuthController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->registerMiddleware(new AuthMiddleware(['profile']));
+    }
+
     public function login(Request $request, Response $response)
     {
         $this->pageTitle('Login');
@@ -51,5 +59,12 @@ class AuthController extends Controller
         return $this->View('auth.register', [
             'model' => $user,
         ]);
+    }
+
+    public function logout()
+    {
+        Application::$app->logout();
+        Application::$app->response->redirect('/login');
+        exit;
     }
 }
