@@ -29,12 +29,17 @@ class AuthController extends Controller
             $loginForm->loadData($request->getBody());
 
             if ($loginForm->validate() && $loginForm->login()) {
+                if (Application::isAdmin()) {
+                    $response->redirect('/admin');
+                    exit;
+                }
+
                 $response->redirect('/');
             }
         }
 
-        return $this->View('auth.login',[
-            'model'=> $loginForm,
+        return $this->View('auth.login', [
+            'model' => $loginForm,
         ]);
     }
 
