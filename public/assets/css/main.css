@@ -5,7 +5,7 @@
 
 .header{
     height: var(--header-height);
-    /* background-image: linear-gradient(0,#f53d2d,#f6402e ); */
+    /* background-images: linear-gradient(0,#f53d2d,#f6402e ); */
     background-color: #D0011B;
     position: fixed;
     top: 0;
@@ -1097,6 +1097,7 @@
 }
 
 .category-list{
+    cursor: pointer;
     list-style: none;
     padding: 0 0 0.8rem 0;
     margin: 0.8rem 0 0.5rem 1.6rem;
@@ -1727,15 +1728,22 @@ i.home-product-items__like-fill{
     background-repeat: no-repeat;
     background-position: center center;
 }
-form.form-auth {
+.auth-content {
     width: 400px;
     margin-left: auto;
-    background-color: #fff;
-    box-sizing: border-box;
-    box-shadow: 0 3px 10px 0 rgba(0,0,0,.14);
     border-radius: 4px;
     overflow: hidden;
     padding: 30px;
+    background-color: #fff;
+    box-sizing: border-box;
+    box-shadow: 0 3px 10px 0 rgba(0,0,0,.14);
+}
+.auth-content .error-message span {
+    font-size: 1.2rem;
+    color: red;
+}
+form.form-auth {
+    width: 100%;
 }
 .form-head{
     margin-bottom: 20px;
