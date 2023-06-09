@@ -1,23 +1,22 @@
+<?php
+use app\core\Application;
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--    <title>Shopee Responsive | HTML, CSS </title>-->
     <title><?php echo $this->title ?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="stylesheet" href="/assets/css/base.css">
-    <link rel="stylesheet" href="/assets/css/grid.css">
-    <link rel="stylesheet" href="/assets/css/responsive.css">
-    <!--    <link rel="stylesheet" href="-->
-    <?php //echo $this->homeUrl ?><!--/assets/fonts/fontawesome-pro-5.13.0-web/css/all.min.css">-->
-    <!--    <link rel="stylesheet" href="-->
-    <?php //echo $this->homeUrl ?><!--/assets/fonts/fontawesome/fontawesome/css/all.min.css">-->
-    <!--    <link rel="icon" href="./assets/img/shopee.png">-->
+    <link rel="stylesheet" href="<?php echo Application::assets('css/main.css') ?>">
+    <link rel="stylesheet" href="<?php echo Application::assets('css/base.css') ?>">
+    <link rel="stylesheet" href="<?php echo Application::assets('css/grid.css') ?>">
+    <link rel="stylesheet" href="<?php echo Application::assets('css/responsive.css') ?>">
+    <link rel="icon" href="<?php echo Application::assets('images/shopee.png') ?>">
 </head>
 
 <body>
