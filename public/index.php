@@ -1,5 +1,8 @@
 <?php
 
+use app\controller\admin\AdminController;
+use app\controller\admin\AdminProductCategoryController;
+use app\controller\admin\AdminProductController;
 use app\controller\AuthController;
 use app\controller\SiteController;
 use app\controller\UserController;
@@ -22,12 +25,17 @@ $app = new app\core\Application(dirname(__DIR__), $config);
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/contact', [SiteController::class, 'contact']);
 $app->router->post('/contact', [SiteController::class, 'handlerContact']);
-$app->router->get('/login', [AuthController::class, 'login']);
+$app->router->get('/login', [AuthController::class, 'login'], 'login');
 $app->router->post('/login', [AuthController::class, 'login']);
 $app->router->get('/register', [AuthController::class, 'register']);
 $app->router->post('/register', [AuthController::class, 'register']);
 $app->router->get('/logout', [AuthController::class, 'logout']);
 $app->router->get('/user/profile', [UserController::class, 'profile']);
 $app->router->get('/user/profile/{id:\d+}', [UserController::class, 'profileWithId']);
+
+
+$app->router->get('/admin/', [AdminController::class, 'index'], 'admin');
+$app->router->get('/admin/product-management', [AdminProductController::class, 'index'], 'admin-product-index');
+$app->router->get('/admin/product-category', [AdminProductController::class, 'category'], 'admin-cate-index');
 
 $app->run();

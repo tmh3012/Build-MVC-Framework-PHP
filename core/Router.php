@@ -10,6 +10,7 @@ class Router
     public Response $response;
     protected array $routeMap = [];
     public string $homeUrl;
+    public RouteName $routeName;
 
     /**
      * @param Request $request
@@ -20,15 +21,22 @@ class Router
         $this->request = $request;
         $this->response = $response;
         $this->homeUrl = $request->getHomePath();
+        $this->routeName = new RouteName();
     }
 
-    public function get($path, $callback)
+    public function get($path, $callback, $name = null)
     {
+        if (!empty($name)) {
+            $this->routeName->defineRouteName($name, $path);
+        }
         $this->routeMap['get'][$path] = $callback;
     }
 
-    public function post($path, $callback)
+    public  function post($path, $callback, $name = null)
     {
+        if (!empty($name)) {
+            $this->routeName->defineRouteName($name, $path);
+        }
         $this->routeMap['post'][$path] = $callback;
     }
 
@@ -43,7 +51,6 @@ class Router
         $path = $this->request->getUrl();
         $method = $this->request->method();
         $callback = $this->routeMap[$method][$path] ?? false;
-
         if (!$callback) {
             $callback = $this->getCallback();
             if (!$callback) {
