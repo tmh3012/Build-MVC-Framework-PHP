@@ -39,12 +39,11 @@ class Application
         }
     }
 
-
     public function run()
     {
         try {
             echo $this->router->resolve();
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             echo $this->view->renderView('_error', [
                 'errorMessage' => $e->getMessage(),
             ]);
@@ -67,6 +66,28 @@ class Application
         $this->controller = $controller;
     }
 
+    public static function assets($fileName): string
+    {
+        $path = self::$ROOT_DIR . "/public/assets/$fileName";
+        if (file_exists($path)) {
+            $path = str_replace(self::$ROOT_DIR.'/public', self::homeUrl(), $path);
+        } else {
+            $path = '';
+        }
+        return $path;
+    }
+
+    public static function homeUrl(): string
+    {
+        return self::$app->request->getHomePath();
+    }
+
+    public static function renderRoute(string $routeName): string
+    {
+        return self::$app->router->routeName->getUrl($routeName);
+    }
+
+
     public function login(DbModel $user)
     {
         $this->user = $user;
@@ -85,5 +106,10 @@ class Application
     public static function isGuest(): bool
     {
         return !self::$app->user;
+    }
+
+    public static function isAdmin(): bool
+    {
+        return self::$app->user->role === 1;
     }
 }
