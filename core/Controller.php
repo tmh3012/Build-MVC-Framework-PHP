@@ -8,7 +8,7 @@ class Controller
 {
     public string $layout = "master";
     public string $actions = "";
-
+    public array $breadcrumbs;
     /**
      * @var BaseMiddleware[]
     */
