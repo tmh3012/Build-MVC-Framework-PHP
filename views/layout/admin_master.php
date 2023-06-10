@@ -23,9 +23,10 @@ use app\core\Application;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <!--    <link rel="icon" href="./assets/img/shopee.png">-->
-</head>
+    <link href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/r-2.4.1/rr-1.3.3/sp-2.1.2/datatables.min.css" rel="stylesheet"/>
 
+    {{stack(css)}}
+</head>
 <body>
 <div class="app" id="admin">
     <!-- begin code header -->
@@ -34,7 +35,7 @@ use app\core\Application;
             <div class="header-main">
                 <div class="header-left header-with-page-title">
                     <div class="header__logo">
-                        <a href="http://localhost:8080">
+                        <a href="<?php echo Application::renderRoute('admin')?>">
                             <svg viewBox="0 0 192 65" class="header__logo-img">
                                 <g fill-rule="evenodd">
                                     <path fill="#FFF"
@@ -446,6 +447,8 @@ use app\core\Application;
 </div>
 <script src="<?php echo  Application::assets('js/main.js') ?>"></script>
 <script src="<?php echo  Application::assets('js/dropzone.js') ?>"></script>
+<script src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/r-2.4.1/rr-1.3.3/sp-2.1.2/datatables.min.js"></script>
+{{stack(js)}}
 </body>
 
 </html>

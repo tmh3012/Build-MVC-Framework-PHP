@@ -11,8 +11,21 @@ class View
 
     public function renderView($view, $data = [])
     {
+        // get view content and view main
         $layoutContent = $this->renderViewMaster();
         $viewContent = $this->renderViewContent($view, $data);
+
+        // handler push resource (css, js) from view content to main layout
+        while (strpos($viewContent, "{{push(") !== false) {
+            $pushStart = strpos($viewContent, "{{push(");
+            $pushEnd = strpos($viewContent, ")}}");
+            $stackType = substr($viewContent, $pushStart + strlen("{{push("), $pushEnd - ($pushStart + strlen("{{push(")));
+            $subEnd = strpos($viewContent, "{{endpush($stackType)}}") + strlen("{{endpush($stackType)}}");
+            $result = ltrim(substr($viewContent, $pushStart, $subEnd - $pushStart), "{{push($stackType)}}");
+            $result = rtrim($result, "{{endpush($stackType)}}");
+            $viewContent = substr_replace($viewContent, '', $pushStart, $subEnd - $pushStart);
+            $layoutContent = str_replace("{{stack($stackType)}}", $result, $layoutContent);
+        }
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
