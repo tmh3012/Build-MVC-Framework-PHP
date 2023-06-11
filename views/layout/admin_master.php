@@ -9,7 +9,7 @@ use app\core\Application;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin page</title>
+    <title><?php echo $this->title ? $this->title . ' | Admin Dashboard' : 'Admin Dashboard' ?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -23,7 +23,9 @@ use app\core\Application;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/r-2.4.1/rr-1.3.3/sp-2.1.2/datatables.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/r-2.4.1/rr-1.3.3/sp-2.1.2/datatables.min.css"
+          rel="stylesheet"/>
+    <link rel="stylesheet" href="<?php echo Application::assets('css/cus_datatable.css') ?>">
 
     {{stack(css)}}
 </head>
@@ -35,7 +37,7 @@ use app\core\Application;
             <div class="header-main">
                 <div class="header-left header-with-page-title">
                     <div class="header__logo">
-                        <a href="<?php echo Application::renderRoute('admin')?>">
+                        <a href="<?php echo Application::renderRoute('admin') ?>">
                             <svg viewBox="0 0 192 65" class="header__logo-img">
                                 <g fill-rule="evenodd">
                                     <path fill="#FFF"
@@ -445,9 +447,10 @@ use app\core\Application;
     </footer>
     <!-- end code footer -->
 </div>
-<script src="<?php echo  Application::assets('js/main.js') ?>"></script>
-<script src="<?php echo  Application::assets('js/dropzone.js') ?>"></script>
+<script src="<?php echo Application::assets('js/main.js') ?>"></script>
+<script src="<?php echo Application::assets('js/dropzone.js') ?>"></script>
 <script src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/r-2.4.1/rr-1.3.3/sp-2.1.2/datatables.min.js"></script>
+
 {{stack(js)}}
 </body>
 
