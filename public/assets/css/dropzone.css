@@ -17,11 +17,15 @@
 }
 
 #dropzone .dd-area.dd-active {
-    background-color: #F2F8FF;
+    background-color: rgba(239,77, 45, 0.08);
 }
 
 #dropzone .dd-area .dz-message {
+    font-weight: 400;
     transition: all 0.1s linear;
+}
+#dropzone .dd-area span {
+    font-weight: 500;
 }
 
 #dropzone .dd-area .icon {
@@ -83,7 +87,7 @@
 .dd-preview .file.image .item {
     flex-direction: column;
     align-items: center;
-    width: 300px;
+    width: 100%;
     margin: 0 auto;
 }
 

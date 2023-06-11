@@ -14,7 +14,7 @@ Array.from(fileInputs).forEach((input, index) => {
         if (input.files.length > 0) {
             handlerShowFile(input.files[0], input);
         } else {
-            console.log("chưa chọn file kìa ml")
+            console.warn("chưa chọn file kìa ml")
         }
 
     }
@@ -100,6 +100,8 @@ function handlerShowFile(file, element) {
         const reader = new FileReader();
         const image = new Image();
         reader.onload = () => {
+            image.style.width = '100%';
+            image.style.borderRadius = '10px';
             image.src = reader.result;
         };
         if (file) {
