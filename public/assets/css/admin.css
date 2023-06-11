@@ -73,5 +73,6 @@
 }
 
 #admin .form-category textarea#description {
+    resize: none;
     height: 12rem;
 }
