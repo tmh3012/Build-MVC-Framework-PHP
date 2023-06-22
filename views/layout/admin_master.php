@@ -23,6 +23,7 @@ use app\core\Application;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <link href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/r-2.4.1/rr-1.3.3/sp-2.1.2/datatables.min.css"
           rel="stylesheet"/>
     <link rel="stylesheet" href="<?php echo Application::assets('css/cus_datatable.css') ?>">
@@ -449,7 +450,11 @@ use app\core\Application;
 </div>
 <script src="<?php echo Application::assets('js/main.js') ?>"></script>
 <script src="<?php echo Application::assets('js/dropzone.js') ?>"></script>
-<script src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/r-2.4.1/rr-1.3.3/sp-2.1.2/datatables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.datatables.net/v/dt/dt-1.13.4/r-2.4.1/rr-1.3.3/sp-2.1.2/datatables.min.js"></script>
 
 {{stack(js)}}
 </body>

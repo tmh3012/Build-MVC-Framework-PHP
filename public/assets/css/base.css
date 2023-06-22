@@ -29,16 +29,24 @@ html {
     display: none !important;
 }
 
+.p-0 {
+    padding: 0 !important;
+}
+
+.p-1 {
+    padding: 10px;
+}
+
+.p-2 {
+    padding: 20px;
+}
+
 .mt-1 {
     margin-top: 1rem;
 }
 
 .mr-0 {
     margin: 0 !important;
-}
-
-.p-0 {
-    padding: 0 !important;
 }
 
 .mry-0 {
