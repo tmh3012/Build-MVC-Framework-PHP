@@ -1,8 +1,8 @@
 <?php
 
 use app\controller\admin\AdminController;
-use app\controller\admin\AdminProductCategoryController;
-use app\controller\admin\AdminProductController;
+use app\controller\admin\CategoryController;
+use app\controller\admin\ProductController;
 use app\controller\AuthController;
 use app\controller\SiteController;
 use app\controller\UserController;
@@ -34,8 +34,9 @@ $app->router->get('/user/profile', [UserController::class, 'profile']);
 $app->router->get('/user/profile/{id:\d+}', [UserController::class, 'profileWithId']);
 
 
-$app->router->get('/admin/', [AdminController::class, 'index'], 'admin');
-$app->router->get('/admin/product-management', [AdminProductController::class, 'index'], 'admin-product-index');
-$app->router->get('/admin/product-category', [AdminProductController::class, 'category'], 'admin-cate-index');
+$app->router->get('/admin/', [AdminController::class, 'viewTest'], 'admin');
+$app->router->get('/admin/product-management', [ProductController::class, 'index'], 'admin-product-index');
+$app->router->get('/admin/product-category', [CategoryController::class, 'category'], 'admin-cate-index');
+$app->router->post('/admin/product-category/store', [CategoryController::class, 'store'], 'admin-cate-store');
 
 $app->run();
