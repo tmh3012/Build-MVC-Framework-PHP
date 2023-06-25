@@ -34,14 +34,7 @@ class Form
 
     public function select(Model $model , $attribute, $options): SelectField
     {
-        try {
-            return new SelectField($model , $attribute, $options);
-        } catch (\Throwable $e) {
-            echo "<pre>";
-            var_dump($e->getMessage());
-            echo "</pre>";
-            die();
-        }
+        return new SelectField($model , $attribute, $options);
 //        return new SelectField($model , $attribute, $options);
     }
 
