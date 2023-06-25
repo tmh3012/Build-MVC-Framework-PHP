@@ -12,13 +12,11 @@
                     <h2 class="form-title">Register now</h2>
                 </div>
                 <div class="form-body">
-                    <?php echo $form->field($model,'name','Your full name') ?>
-                    <?php echo $form->field($model,'email', 'Your email address')->type('email') ?>
-                    <?php echo $form->field($model,'password','Enter your password')->type('password') ?>
-                    <?php echo $form->field($model,'passwordConfirm', 'Confirm password')->type('password') ?>
-                    <div class="form-group">
-                        <button class="btn btn--primary">Register</button>
-                    </div>
+                    <?php echo $form->input($model,'name','Your full name') ?>
+                    <?php echo $form->input($model,'email', 'Your email address')->type('email') ?>
+                    <?php echo $form->input($model,'password','Enter your password')->type('password') ?>
+                    <?php echo $form->input($model,'passwordConfirm', 'Confirm password')->type('password') ?>
+                    <?php echo $form->button('submit','','btn--primary','Register')?>
                 </div>
                 <div class="form-footer">
                     <p class="description">Do you already have an account ?<a href="/login"> Login here</a></p>

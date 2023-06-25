@@ -19,11 +19,9 @@ use app\core\Application;
                     <h2 class="form-title">Login</h2>
                 </div>
                 <div class="form-body">
-                    <?php echo $form->field($model,'email', 'Your email address')->type('email') ?>
-                    <?php echo $form->field($model,'password','Enter your password')->type('password') ?>
-                    <div class="form-group">
-                        <button class="btn btn--primary">Submit</button>
-                    </div>
+                    <?php echo $form->input($model,'email', 'Your email address')->typeEmail() ?>
+                    <?php echo $form->input($model,'password','Enter your password')->typePassword() ?>
+                    <?php echo $form->button('submit','','btn--primary','Login')?>
                 </div>
                 <div class="form-footer">
                     <p class="description">You don't have an account ?<a href="/register"> Register here</a> </p>

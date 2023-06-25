@@ -22,8 +22,37 @@ class Form
         echo '</form>';
     }
 
-    public function field(Model $model , $attribute, $placeholder = ''): Field
+    public function input(Model $model , $attribute, $placeholder = ''): InputField
     {
-        return new Field($model, $attribute, $placeholder);
+        return new InputField($model, $attribute, $placeholder);
+    }
+
+    public function textarea(Model $model , $attribute, $placeholder = ''): TextareaField
+    {
+        return new TextareaField($model , $attribute, $placeholder);
+    }
+
+    public function select(Model $model , $attribute, $options): SelectField
+    {
+        try {
+            return new SelectField($model , $attribute, $options);
+        } catch (\Throwable $e) {
+            echo "<pre>";
+            var_dump($e->getMessage());
+            echo "</pre>";
+            die();
+        }
+//        return new SelectField($model , $attribute, $options);
+    }
+
+    public function button($type, $id, $class, $text, $disabled = false)
+    {
+        echo sprintf('<div class="form-group "><button type="%s" %s class="btn %s" %s>%s</button></div>',
+            $type,
+            $id ? 'id="'.$id.'"' : '',
+            $class,
+            $disabled ? 'disabled' : '',
+            $text,
+        );
     }
 }

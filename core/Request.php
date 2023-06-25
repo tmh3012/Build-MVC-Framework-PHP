@@ -45,18 +45,27 @@ class Request
     {
         $body = [];
         if ($this->method() == 'get') {
-            foreach($_GET as $key => $value) {
+            foreach ($_GET as $key => $value) {
                 $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
+
         if ($this->method() == 'post') {
-            foreach($_POST as $key => $value) {
+
+            if (isset($_FILES)) {
+                foreach ($_FILES as $key => $file) {
+                    $body[$key] = $file;
+                }
+            }
+
+            foreach ($_POST as $key => $value) {
                 $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
 
         return $body;
     }
+
     public function getUrl()
     {
         $path = $_SERVER['REQUEST_URI'];
@@ -67,11 +76,12 @@ class Request
         return $path;
     }
 
-    public function setRouteParams( $params)
+    public function setRouteParams($params)
     {
         $this->routeParams = $params;
         return $this;
     }
+
     public function getRouteParams()
     {
         return $this->routeParams;
