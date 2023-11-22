@@ -6,6 +6,20 @@ class Request
 {
     private array $routeParams = [];
 
+    public function __construct()
+    {
+        if ($_GET) {
+            foreach ($_GET as $key => $value) {
+                Application::$app->session->setFlash($key, $value);
+            }
+        }
+        if ($_POST) {
+            foreach ($_POST as $key => $value) {
+                Application::$app->session->setFlash($key, $value);
+            }
+        }
+    }
+
     public function getHomePath()
     {
         if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
@@ -39,6 +53,19 @@ class Request
     public function isPost(): bool
     {
         return $this->method() === 'post';
+    }
+
+    public function get($key)
+    {
+        if ($this->isGet())
+        {
+            return $_GET[$key];
+        }
+        if ($this->isPost())
+        {
+            return $_POST[$key];
+        }
+        return null;
     }
 
     public function getBody()
@@ -90,5 +117,11 @@ class Request
     public function getRouteParam($param, $default = null)
     {
         return $this->routeParams[$param] ?? $default;
+    }
+
+    public function validate($rules)
+    {
+        $validation = new Validation($this->getBody(), $rules);
+        return $validation->validate();
     }
 }

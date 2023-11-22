@@ -2,7 +2,7 @@
 
 namespace app\core;
 
-abstract class Model
+class Validation
 {
     public const RULE_REQUIRED = 'required';
     public const RULE_UNIQUE = 'unique';
@@ -12,34 +12,23 @@ abstract class Model
     public const RULE_MAX = 'max';
 
     public array $errors = [];
+    public array $data;
+    public array $rules;
 
-    public function loadData($data)
+    public function __construct($data, $rules)
     {
-        foreach ($data as $key => $value) {
-            if (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            }
-        }
+        $this->data = $data;
+        $this->rules = $rules;
     }
 
-    abstract public function rules();
 
-    public function labels(): array
+    public function validate(): bool|array
     {
-        return [];
-    }
-
-    public function getLabel($attribute): string
-    {
-        return $this->labels()[$attribute];
-    }
-
-    public function validate()
-    {
-        foreach ($this->rules() as $attribute => $rules) {
-            $value = $this->{$attribute};
+        $validated = [];
+        foreach ($this->rules as $attribute => $rules) {
+            $value = $this->data[$attribute];
             foreach ($rules as $rule) {
-
+                // get rule name
                 $ruleName = $rule;
                 if (!is_string($ruleName)) {
                     $ruleName = $rule[0];
@@ -78,8 +67,12 @@ abstract class Model
                     }
                 }
             }
+            if (!$this->hasError($attribute)) {
+               $validated[$attribute] = $value;
+            }
         }
-        return empty($this->errors);
+        return empty($this->errors) ? $validated : false;
+//        return empty($this->errors) ? $validated : $this->errors;
     }
 
     private function addErrorForRule(string $attribute, string $rule, $params = [])
@@ -103,11 +96,6 @@ abstract class Model
             self::RULE_MATCH => "This field must be the same as {match}",
             self::RULE_UNIQUE => "This {field} already exists",
         ];
-    }
-
-    public function addError(string $attribute, string $errorMessage)
-    {
-        $this->errors[$attribute][] = $errorMessage;
     }
 
     public function hasError($attribute)

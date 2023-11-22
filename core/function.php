@@ -14,3 +14,16 @@ if (! function_exists('generateBreadcrumbs')){
         return rtrim($result,' > ');
     }
 }
+
+if (! function_exists('route')) {
+    function route($routeName): string
+    {
+        return Application::renderRoute($routeName);
+    }
+}
+if (! function_exists('old')) {
+    function old($key): string
+    {
+        return Application::$app->session->getFlash($key) ?? '';
+    }
+}

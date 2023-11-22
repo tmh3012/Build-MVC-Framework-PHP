@@ -30,7 +30,7 @@ class AuthController extends Controller
 
             if ($loginForm->validate() && $loginForm->login()) {
                 if (Application::isAdmin()) {
-                    $response->redirect('/admin');
+                    $response->redirect('/admin/product-category');
                     exit;
                 }
 

@@ -23,9 +23,9 @@ class Application
     {
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
+        $this->session = new Session();
         $this->request = new Request();
         $this->response = new Response();
-        $this->session = new Session();
         $this->view = new View();
         $this->router = new Router($this->request, $this->response);
         $this->db = new Database($config['db']);

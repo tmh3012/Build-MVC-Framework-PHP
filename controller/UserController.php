@@ -22,7 +22,6 @@ class UserController extends Controller
         echo "<pre>";
         var_dump($request->getRouteParam('id'));
         echo "</pre>";
-        die();
         return $this->View('frontEnd.profile');
     }
 

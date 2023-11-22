@@ -11,14 +11,14 @@ abstract class BaseField
     public string $placeholder;
 
     /**
-     * @param Model $model
+//     * @param Model $model
      * @param string $attribute
      * @param string $placeholder
      */
 
-    public function __construct(Model $model, string $attribute, string $placeholder = '')
+    public function __construct( string $attribute, string $placeholder = '')
     {
-        $this->model = $model;
+//        $this->model = $model;
         $this->attribute = $attribute;
         $this->placeholder = $placeholder;
     }

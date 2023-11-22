@@ -6,13 +6,14 @@ use app\core\Model;
 
 class Form
 {
-    public static function begin($id, $class, $action, $method)
+    public static function begin($id, $class, $action, $method, $enctype = null)
     {
-        echo sprintf('<form id="%s" class="%s" action="%s" method="%s">',
+        echo sprintf('<form id="%s" class="%s" action="%s" method="%s" %s>',
             $id,
             $class,
             $action,
             $method,
+            $enctype ? 'enctype="'.$enctype.'"' : '',
         );
         return new Form();
     }
@@ -22,9 +23,9 @@ class Form
         echo '</form>';
     }
 
-    public function input(Model $model , $attribute, $placeholder = ''): InputField
+    public function input($attribute, $placeholder = ''): InputField
     {
-        return new InputField($model, $attribute, $placeholder);
+        return new InputField($attribute, $placeholder);
     }
 
     public function textarea(Model $model , $attribute, $placeholder = ''): TextareaField
@@ -35,7 +36,6 @@ class Form
     public function select(Model $model , $attribute, $options): SelectField
     {
         return new SelectField($model , $attribute, $options);
-//        return new SelectField($model , $attribute, $options);
     }
 
     public function button($type, $id, $class, $text, $disabled = false)

@@ -8,6 +8,8 @@ class Category extends DbModel
 {
     public string $name ='';
     public string $slug ='';
+    public string $description = '';
+    public string|array $image ;
 
     public static function tableName(): string
     {
@@ -37,6 +39,9 @@ class Category extends DbModel
     public function rules(): array
     {
         return [
+            'image' => [
+                self::RULE_REQUIRED,
+            ],
             'name' => [self::RULE_REQUIRED],
             'slug' => [
                 self::RULE_REQUIRED,

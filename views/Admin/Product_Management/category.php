@@ -11,7 +11,8 @@ use \app\core\Application;
         <div class="row sm-gutter">
             <div class="col l-4 m-4 c-12 ">
                 <div class="category-add page-wrapper">
-                    <?php $form = \app\core\form\Form::begin('form-category', 'form-category', '', 'post') ?>
+                    <?php $form = \app\core\form\Form::begin('form-category', 'form-category',
+                        route('admin-cate-index'), 'post','multipart/form-data') ?>
                     <div id="dropzone">
                         <div class="form-group">
                             <div class="dropzone main">
@@ -30,8 +31,8 @@ use \app\core\Application;
                                 <?php echo $model->hasError('image') ? $model->getFirstError('image') : '' ?>
                             </span>
                     </div>
-                    <?php echo $form->input($model, 'name', 'Category Name',) ?>
-                    <?php echo $form->input($model, 'slug', 'Slug',) ?>
+                    <?php echo $form->input('name', 'Category Name',) ?>
+                    <?php echo $form->input('slug', 'Slug',) ?>
                     <?php echo $form->textarea($model, 'description', 'Description') ?>
                     <?php echo $form->button('submit', '', 'btn--primary', 'Add Category') ?>
                     <?php echo $form::end() ?>

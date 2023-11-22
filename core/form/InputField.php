@@ -2,6 +2,7 @@
 
 namespace app\core\form;
 
+use app\core\Application;
 use app\core\Model;
 use app\enum\FieldType;
 
@@ -9,15 +10,10 @@ class InputField extends BaseField
 {
     public string $type;
 
-    /**
-     * @param \app\core\Model $model
-     * @param string $attribute
-     * @param string $placeholder
-     */
-    public function __construct(Model $model, string $attribute, string $placeholder)
+    public function __construct( string $attribute, string $placeholder)
     {
         $this->type = FieldType::TYPE_TEXT;
-        parent::__construct($model, $attribute, $placeholder);
+        parent::__construct( $attribute, $placeholder);
     }
 
     public function type($type): InputField
@@ -49,7 +45,7 @@ class InputField extends BaseField
             $this->type,
             $this->attribute,
             $this->attribute,
-            $this->model->{$this->attribute},
+            old($this->attribute),
             $this->placeholder,
         );
     }

@@ -37,6 +37,6 @@ $app->router->get('/user/profile/{id:\d+}', [UserController::class, 'profileWith
 $app->router->get('/admin/', [AdminController::class, 'viewTest'], 'admin');
 $app->router->get('/admin/product-management', [ProductController::class, 'index'], 'admin-product-index');
 $app->router->get('/admin/product-category', [CategoryController::class, 'category'], 'admin-cate-index');
-$app->router->post('/admin/product-category/store', [CategoryController::class, 'store'], 'admin-cate-store');
+$app->router->post('/admin/product-category', [CategoryController::class, 'category']);
 
 $app->run();
